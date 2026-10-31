@@ -118,15 +118,20 @@ def generate_dataset_report(profile: Dict[str, Any], df: pd.DataFrame) -> str:
     # --- Column types ---
     lines.append("## Column Types")
     col_types = profile.get("column_types", {})
-    if not col_types:
-        col_types = {col: str(df[col].dtype) for col in df.columns}
-
     type_counts: Dict[str, int] = {}
-    for dtype in col_types.values():
-        type_counts[dtype] = type_counts.get(dtype, 0) + 1
+    if isinstance(col_types, dict):
+        for k, v in col_types.items():
+            if isinstance(v, list):
+                type_counts[k.capitalize()] = len(v)
+            else:
+                type_counts[str(v)] = type_counts.get(str(v), 0) + 1
+    else:
+        for col in df.columns:
+            dt = str(df[col].dtype)
+            type_counts[dt] = type_counts.get(dt, 0) + 1
 
-    lines.append("| Data Type | Count |")
-    lines.append("|-----------|-------|")
+    lines.append("| Category / Type | Count |")
+    lines.append("|-----------------|-------|")
     for dtype, cnt in sorted(type_counts.items(), key=lambda x: x[1], reverse=True):
         lines.append(f"| {dtype} | {cnt} |")
     lines.append("")

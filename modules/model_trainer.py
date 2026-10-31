@@ -38,17 +38,17 @@ try:
     import xgboost as xgb  # type: ignore
 
     _XGBOOST_AVAILABLE = True
-except ImportError:
+except Exception:
     _XGBOOST_AVAILABLE = False
-    logger.debug("XGBoost not installed — xgboost models will be skipped.")
+    logger.debug("XGBoost not available — xgboost models will be skipped.")
 
 try:
     import lightgbm as lgb  # type: ignore
 
     _LIGHTGBM_AVAILABLE = True
-except ImportError:
+except Exception:
     _LIGHTGBM_AVAILABLE = False
-    logger.debug("LightGBM not installed — lightgbm models will be skipped.")
+    logger.debug("LightGBM not available — lightgbm models will be skipped.")
 
 
 # ---------------------------------------------------------------------------
@@ -338,13 +338,23 @@ def _run_evaluation(
                     stacklevel=3,
                 )
 
-    # Feature column inference from profile
-    numerical_cols: list[str] = profile.get("numerical_cols", [])
-    categorical_cols: list[str] = profile.get("categorical_cols", [])
+    # Feature column inference from profile (with fallback to direct dtype inference)
+    col_types = profile.get("column_types", {})
+    numerical_cols = profile.get("numerical_cols") or col_types.get("numerical")
+    if numerical_cols is None:
+        numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+    else:
+        numerical_cols = list(numerical_cols)
+
+    categorical_cols = profile.get("categorical_cols") or col_types.get("categorical")
+    if categorical_cols is None:
+        categorical_cols = df.select_dtypes(include=["object", "category", "string", "bool"]).columns.tolist()
+    else:
+        categorical_cols = list(categorical_cols)
 
     # Remove target from feature lists if accidentally included
-    numerical_cols = [c for c in numerical_cols if c != target_col]
-    categorical_cols = [c for c in categorical_cols if c != target_col]
+    numerical_cols = [c for c in numerical_cols if c != target_col and c in df.columns]
+    categorical_cols = [c for c in categorical_cols if c != target_col and c in df.columns]
 
     # Build preprocessing pipeline
     preprocessor = build_preprocessing_pipeline(

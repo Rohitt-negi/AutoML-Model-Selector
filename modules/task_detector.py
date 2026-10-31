@@ -267,9 +267,14 @@ def detect_task_type(
         return _build_result(task_type, sub_type, confidence, reasoning, warnings_out)
 
     # ------------------------------------------------------------------
-    # 2d. Categorical (object / category) target
+    # 2d. Categorical / string target
     # ------------------------------------------------------------------
-    if target.dtype == object or hasattr(target, "cat"):
+    if (
+        pd.api.types.is_object_dtype(target)
+        or pd.api.types.is_string_dtype(target)
+        or hasattr(target, "cat")
+        or isinstance(target.dtype, pd.CategoricalDtype)
+    ):
         n_unique = int(target.nunique())
         reasoning.append(
             f"Target is categorical with {n_unique} unique value(s)."

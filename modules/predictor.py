@@ -350,6 +350,8 @@ def format_prediction_output(
               ``probabilities_table`` (classification only).
     """
     out: Dict[str, Any] = {
+        "prediction": prediction_dict.get("prediction"),
+        "probabilities": prediction_dict.get("probabilities"),
         "result_summary": "",
         "display_prediction": "",
         "detail_lines": [],

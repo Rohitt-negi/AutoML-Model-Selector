@@ -54,3 +54,4 @@ Thumbs.db
 # Exported files / user session cache
 exports/*.joblib
 exports/*.pdf
+

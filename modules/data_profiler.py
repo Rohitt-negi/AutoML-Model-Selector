@@ -242,6 +242,7 @@ def _target_analysis(
     analysis: Dict[str, Any] = {
         "target_col": target_col,
         "is_categorical": is_categorical,
+        "task_family": "categorical" if is_categorical else "numerical",
         "n_missing": int(df[target_col].isna().sum()),
     }
 
@@ -334,11 +335,23 @@ def profile_dataset(
             for col in corr_matrix.columns
         }
 
+    missing_dict = _missing_stats(df)
+    total_cells = df.shape[0] * df.shape[1]
+    missing_cells = int(df.isna().sum().sum())
+    total_missing_pct = round(100.0 * missing_cells / total_cells, 2) if total_cells else 0.0
+    mem_bytes = df.memory_usage(deep=True).sum()
+
     profile: Dict[str, Any] = {
         "shape": df.shape,
-        "memory_usage_mb": round(df.memory_usage(deep=True).sum() / (1024 ** 2), 3),
+        "n_rows": df.shape[0],
+        "n_cols": df.shape[1],
+        "missing_cells": missing_cells,
+        "total_missing_pct": total_missing_pct,
+        "memory_usage_mb": round(mem_bytes / (1024 ** 2), 3),
+        "memory_usage": f"{round(mem_bytes / (1024 ** 2), 2)} MB" if mem_bytes >= 1024*1024 else f"{round(mem_bytes / 1024, 1)} KB",
         "dtypes": {col: str(dtype) for col, dtype in df.dtypes.items()},
-        "missing": _missing_stats(df),
+        "missing": missing_dict,
+        "missing_values": {c: {"count": v["count"], "pct": v["percentage"]} for c, v in missing_dict.items()},
         "duplicate_rows": int(df.duplicated().sum()),
         "column_types": col_types,
         "numerical_stats": _numerical_stats(df, col_types["numerical"]),

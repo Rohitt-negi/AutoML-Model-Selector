@@ -347,8 +347,11 @@ def load_dataset(uploaded_file) -> Tuple[Optional[Any], Dict[str, Any], Optional
     extension = info["extension"]
 
     metadata.update({
+        "name": file_name,
         "file_name": file_name,
+        "size_bytes": size_bytes,
         "file_size_mb": size_mb,
+        "size_str": f"{size_mb:.2f} MB" if size_mb >= 1.0 else f"{round(size_bytes/1024, 1)} KB",
         "extension": extension,
         "format": extension.lstrip(".").upper() if extension else "UNKNOWN",
         "shape": None,

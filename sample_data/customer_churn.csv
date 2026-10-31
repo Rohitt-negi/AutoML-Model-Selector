@@ -1,0 +1,32 @@
+CustomerID,Age,Gender,Tenure,MonthlyCharges,TotalCharges,ContractType,TechSupport,Churn
+1001,34,Male,12,65.5,786.0,Month-to-month,No,Yes
+1002,45,Female,48,89.2,4281.6,Two year,Yes,No
+1003,23,Female,3,45.0,135.0,Month-to-month,No,Yes
+1004,58,Male,60,105.4,6324.0,Two year,Yes,No
+1005,29,Male,8,55.1,440.8,Month-to-month,No,No
+1006,62,Female,36,75.0,2700.0,One year,Yes,No
+1007,41,Male,2,70.3,140.6,Month-to-month,No,Yes
+1008,50,Female,24,95.5,2292.0,One year,No,No
+1009,33,Male,18,60.0,1080.0,Month-to-month,Yes,No
+1010,27,Female,6,80.2,481.2,Month-to-month,No,Yes
+1011,54,Male,72,110.0,7920.0,Two year,Yes,No
+1012,38,Female,15,68.4,1026.0,Month-to-month,No,No
+1013,47,Male,30,85.0,2550.0,One year,Yes,No
+1014,22,Female,1,50.0,50.0,Month-to-month,No,Yes
+1015,65,Male,55,98.6,5423.0,Two year,Yes,No
+1016,31,Female,9,72.1,648.9,Month-to-month,No,Yes
+1017,49,Male,42,88.7,3725.4,One year,Yes,No
+1018,26,Female,4,48.5,194.0,Month-to-month,No,No
+1019,53,Male,66,102.3,6751.8,Two year,Yes,No
+1020,36,Female,20,78.9,1578.0,One year,No,No
+1021,43,Male,14,82.0,1148.0,Month-to-month,No,Yes
+1022,28,Female,7,62.5,437.5,Month-to-month,Yes,No
+1023,61,Male,50,91.2,4560.0,Two year,Yes,No
+1024,35,Female,25,84.0,2100.0,One year,Yes,No
+1025,56,Male,38,79.5,3021.0,One year,No,No
+1026,24,Female,2,55.0,110.0,Month-to-month,No,Yes
+1027,51,Male,64,108.0,6912.0,Two year,Yes,No
+1028,39,Female,17,71.0,1207.0,Month-to-month,Yes,No
+1029,44,Male,28,86.5,2422.0,One year,No,No
+1030,30,Female,11,64.0,704.0,Month-to-month,No,Yes
+

@@ -1,0 +1,22 @@
+ReviewID,Text,Sentiment
+1,"This product exceeded my expectations! Quality is top notch and delivery was lightning fast.",Positive
+2,"Terrible customer support and defective hardware. Do not buy this garbage.",Negative
+3,"Decent value for the price point. Works as advertised with minor setup hiccups.",Positive
+4,"Stopped working completely after two days. Total waste of money.",Negative
+5,"Absolutely love the sleek design and high performance battery life.",Positive
+6,"Extremely disappointed with the cheap plastic feel and missing accessories.",Negative
+7,"Best purchase I made all year. Highly recommended to friends and colleagues.",Positive
+8,"Item arrived broken and seller refused replacement or refund.",Negative
+9,"Very versatile tool and smooth interface. Fits our workflow seamlessly.",Positive
+10,"Horrible experience. Laggy performance and frequent app crashes.",Negative
+11,"Outstanding build quality and crystal clear audio output.",Positive
+12,"Does not work with Mac OS contrary to manufacturer claims. Returned.",Negative
+13,"Super easy to install and runs quietly in the background.",Positive
+14,"Overheats quickly and causes unexpected shutdown. Not safe.",Negative
+15,"Great battery life and fast charging capability. Five stars!",Positive
+16,"The software is clunky and full of annoying bugs.",Negative
+17,"Impressive customer care resolved my inquiry in under ten minutes.",Positive
+18,"Poor materials used, cracked on the first slight impact.",Negative
+19,"Reliable daily driver. Have been using it for months without issues.",Positive
+20,"Misleading product description and missing key features mentioned in listing.",Negative
+
